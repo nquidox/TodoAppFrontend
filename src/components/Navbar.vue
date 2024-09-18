@@ -1,3 +1,19 @@
+<script>
+import {mapActions, mapGetters} from "vuex";
+
+export default {
+  name: "Navbar",
+
+  computed:{
+    ...mapGetters(["isAuth"]),
+  },
+
+  methods:{
+    ...mapActions(["logout"]),
+  },
+}
+</script>
+
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -12,9 +28,14 @@
             <router-link to="/" class="nav-link active">Home</router-link>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" v-if="!isAuth">
             <router-link to="/login" class="nav-link active">Login</router-link>
           </li>
+
+          <li class="nav-item" v-if="isAuth">
+            <router-link to="#" class="nav-link active" @click.prevent="logout">Logout</router-link>
+          </li>
+
         </ul>
       </div>
     </div>
