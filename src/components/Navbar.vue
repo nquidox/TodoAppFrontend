@@ -10,6 +10,16 @@ export default {
 
   methods:{
     ...mapActions(["logout"]),
+
+    async handleLogout() {
+      try {
+        await this.logout();
+        this.$router.push("/");
+      }
+      catch (error) {
+        console.error(error);
+      }
+    },
   },
 }
 </script>
@@ -27,16 +37,27 @@ export default {
           <li class="nav-item">
             <router-link to="/" class="nav-link active">Home</router-link>
           </li>
-
-          <li class="nav-item" v-if="!isAuth">
-            <router-link to="/login" class="nav-link active">Login</router-link>
-          </li>
-
-          <li class="nav-item" v-if="isAuth">
-            <router-link to="#" class="nav-link active" @click.prevent="logout">Logout</router-link>
-          </li>
-
         </ul>
+
+          <div v-if="!isAuth">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link to="/login" class="nav-link active">Login</router-link>
+            </li>
+            </ul>
+          </div>
+
+          <div v-if="isAuth">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link to="/personal" class="nav-link active">Personal</router-link>
+            </li>
+
+            <li class="nav-item">
+              <router-link to="/logout" class="nav-link active" @click.prevent="handleLogout">Logout</router-link>
+            </li>
+            </ul>
+          </div>
       </div>
     </div>
   </nav>

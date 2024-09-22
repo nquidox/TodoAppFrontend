@@ -31,7 +31,7 @@ export default new Vuex.Store({
     actions: {
         async login({ commit }, credentials) {
             try {
-                const response = await axios.post("/login", credentials);
+                const response = await axios.post("/login", credentials, {withCredentials: true});
                 const {resultCode, httpCode, messages, data} = response.data;
 
                 if (httpCode === 200) {
@@ -46,8 +46,17 @@ export default new Vuex.Store({
             }
         },
 
-        logout({ commit }) {
-            commit("LOGOUT");
+        async logout({ commit }, credentials) {
+            try{
+                const response = await axios.post("/logout", credentials, {withCredentials: true});
+                console.log(response.data, response.status)
+                if (response.status === 204) {
+                    commit("LOGOUT");
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
         }
     },
 
