@@ -8,6 +8,11 @@ Simple frontend for todo app.
 npm install
 ```
 
+### Put API address to vite.config.js
+```
+target: 'your.api.site'
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
