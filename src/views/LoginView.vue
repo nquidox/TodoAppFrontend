@@ -16,7 +16,7 @@ export default {
   },
 
   methods:{
-    ...mapActions(["login", "logout"]),
+    ...mapActions(["login"]),
 
     async handleLogin() {
       const credentials = {
