@@ -37,6 +37,10 @@ export default {
           <li class="nav-item">
             <router-link to="/" class="nav-link active">Home</router-link>
           </li>
+
+          <li class="nav-item" v-if="isAuth">
+            <router-link to="/todo-lists" class="nav-link active">ToDo Lists</router-link>
+          </li>
         </ul>
 
           <div v-if="!isAuth">
