@@ -70,7 +70,11 @@ export default {
     </div>
     <div class="card mt-3" v-if="showCreateForm === true">
       <div class="card-header card-header-blue d-flex justify-content-center">
-        <input class="border-black border-2" v-model="newList.title" placeholder="Enter todo list name" />
+        <input class="border-black border-2"
+               v-model="newList.title"
+               @keyup.enter="createList(newList)"
+               @keyup.esc="showCreateForm = false"
+               placeholder="Enter todo list name" />
         <img src="../assets/icons/check.svg" class="hover-image bordered m-1" @click="createList(newList)" alt="create list" height="24" width="24" />
         <img src="../assets/icons/cancel.svg" class="hover-image m-1" @click="showCreateForm = false" alt="cancel" height="24" width="24" />
       </div>

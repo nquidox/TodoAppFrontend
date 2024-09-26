@@ -100,10 +100,14 @@ export default {
     <div class="card mt-3">
       <div class="card-header card-header-green d-flex justify-content-between">
         <div v-if="!list.isEdit">
-          <span> {{ list.title }} </span>
+          <span class="fs-6" @click="editList(list)"> {{ list.title }} </span>
         </div>
         <div v-else>
-          <input class="border-black border-2" v-model="list.newTitle" placeholder="list.title" />
+          <input class="border-black border-2"
+                 v-model="list.newTitle"
+                 @keyup.enter="saveList(list)"
+                 @keyup.esc="list.isEdit = !list.isEdit"
+                 placeholder="list.title" />
           <img src="../assets/icons/check.svg" class="hover-image bordered m-1" @click="saveList(list)" alt="save" height="24" width="24" />
           <img src="../assets/icons/cancel.svg" class="hover-image m-1" @click="list.isEdit = !list.isEdit" alt="cancel" height="24" width="24" />
         </div>
@@ -115,19 +119,32 @@ export default {
       </div>
       <ol class="list-group list-group-flush">
         <li class="list-group-item" v-for="task in tasks" :key="task">
-          <span class="fs-6" v-if="!task.isEdit">
-            <img src="../assets/icons/circle.svg" class="m-1" alt="*" height="24" width="24" />
-            {{ task.title }}
-          </span>
-          <span v-else>
-            <img src="../assets/icons/circle.svg" class="m-1" alt="*" height="24" width="24" />
-            <input class="border-black border-2" v-model="task.title" placeholder="Task title" />
-            <img src="../assets/icons/check.svg" class="hover-image bordered m-1" @click="saveTask(task)" alt="save" height="24" width="24" />
-            <img src="../assets/icons/cancel.svg" class="hover-image m-1" @click="task.isEdit = !task.isEdit" alt="cancel" height="24" width="24" />
-          </span>
-          <img src="../assets/icons/edit.svg" class="hover-image m-1" @click="editTask(task)" alt="edit" height="24" width="24" />
-          <img src="../assets/icons/trash.svg" class="hover-image m-1" @click="deleteTask(task)" alt="delete" height="24" width="24" />
+          <div class="d-flex justify-content-between">
+
+            <div class="fs-6" v-if="!task.isEdit">
+              <img src="../assets/icons/circle.svg" class="m-1" alt="*" height="24" width="24" />
+              <span class="fs-6" @click="editTask(task)">{{ task.title }}</span>
+            </div>
+
+            <div v-else>
+              <img src="../assets/icons/circle.svg" class="m-1" alt="*" height="24" width="24" />
+              <input class="border-black border-2"
+                     v-model="task.title"
+                     @keyup.enter="saveTask(task)"
+                     @keyup.esc="task.isEdit = !task.isEdit"
+                     placeholder="Task title" />
+              <img src="../assets/icons/check.svg" class="hover-image bordered m-1" @click="saveTask(task)" alt="save" height="24" width="24" />
+              <img src="../assets/icons/cancel.svg" class="hover-image m-1" @click="task.isEdit = !task.isEdit" alt="cancel" height="24" width="24" />
+            </div>
+
+            <div>
+              <img src="../assets/icons/edit.svg" class="hover-image m-1" @click="editTask(task)" alt="edit" height="24" width="24" />
+              <img src="../assets/icons/trash.svg" class="hover-image m-1" @click="deleteTask(task)" alt="delete" height="24" width="24" />
+            </div>
+
+          </div>
         </li>
+
         <li class="list-group-item">
           <div v-if="!taskEdit">
             <span class="fs-6" @click="taskEdit = !taskEdit">
@@ -136,7 +153,7 @@ export default {
             </span>
           </div>
           <div v-else>
-            <input class="border-black border-2" v-model="task.title" placeholder="New task" />
+            <input class="border-black border-2" v-model="task.title" @keyup.enter="createTask(task)" placeholder="New task" />
             <img src="../assets/icons/check.svg" class="hover-image bordered m-1" @click="createTask(task)" alt="create" height="24" width="24" />
             <img src="../assets/icons/cancel.svg" class="hover-image m-1" @click="taskEdit = !taskEdit" alt="cancel" height="24" width="24" />
           </div>
