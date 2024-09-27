@@ -75,7 +75,11 @@ export default {
                @keyup.enter="createList(newList)"
                @keyup.esc="showCreateForm = false"
                placeholder="Enter todo list name" />
-        <img src="../assets/icons/check.svg" class="hover-image bordered m-1" @click="createList(newList)" alt="create list" height="24" width="24" />
+
+        <img src="../assets/icons/check.svg"
+             class="hover-image bordered m-1"
+             @click="createList(newList)"
+             alt="create list" height="24" width="24" />
         <img src="../assets/icons/cancel.svg" class="hover-image m-1" @click="showCreateForm = false" alt="cancel" height="24" width="24" />
       </div>
     </div>
@@ -90,15 +94,5 @@ export default {
 </template>
 
 <style scoped>
-.card-header-blue{
-  background-color: #34aaff;
-}
-
-.hover-image{
-  transition: 0.3s;
-}
-
-.hover-image:hover {
-  transform: scale(1.1);
-}
+@import "@/assets/custom.css";
 </style>

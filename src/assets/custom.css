@@ -1,0 +1,38 @@
+.bordered{
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.card-header-green{
+    background-color: aquamarine;
+}
+
+.card-header-blue{
+    background-color: #34aaff;
+}
+
+li {
+    list-style-type: none;
+    padding: 10px;
+    background-color: white;
+}
+
+li:hover {
+    background-color: whitesmoke;
+}
+
+.svg-icon {
+    width: 24px;
+    height: 24px;
+    transition: 0.3s;
+}
+
+.svg-icon:hover {
+    transform: scale(1.1);
+}
+
+.svg-icon-disabled {
+    width: 24px;
+    height: 24px;
+    color: gray;
+}
