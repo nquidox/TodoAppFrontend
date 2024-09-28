@@ -61,7 +61,7 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container pt-5">
     <div class="row d-flex mt-3">
       <span class="fs-2 text-center" @click="showCreateForm = !showCreateForm">
         <img src="../assets/icons/new_todo.svg" class="hover-image m-1" alt="edit" height="40" width="40" />

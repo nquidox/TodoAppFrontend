@@ -1,5 +1,4 @@
 <script>
-import { RouterLink, RouterView } from 'vue-router'
 import {defineComponent} from "vue";
 import Navbar from "@/components/Navbar.vue";
 
@@ -11,8 +10,9 @@ export default defineComponent({
 
 <template>
   <Navbar />
-  <RouterView />
+  <RouterView style="padding-top: 60px"/>
 </template>
 
 <style>
+
 </style>
