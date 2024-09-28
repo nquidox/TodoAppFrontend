@@ -6,10 +6,11 @@ import DoneSwitcher from "@/components/doneSwitcher.vue";
 import ListTitle from "@/components/listTitle.vue";
 import TodoTask from "@/components/TodoTask.vue";
 import CreateTask from "@/components/createTask.vue";
+import ShrinkExpand from "@/components/shrinkExpand.vue";
 
 export default {
   name: "TodoList",
-  components: {CreateTask, TodoTask, ListTitle, DoneSwitcher, OkCancel, EditDelete},
+  components: {ShrinkExpand, CreateTask, TodoTask, ListTitle, DoneSwitcher, OkCancel, EditDelete},
 
   props: {
     item: {
@@ -26,6 +27,8 @@ export default {
 
       task:{},
       tasks: [],
+
+      isEditDeleteVisible: false,
     }
   },
 
@@ -124,10 +127,21 @@ export default {
       this.taskEdit = !this.taskEdit
     },
 
+    showEditDelete() {
+      this.isEditDeleteVisible = true
+    },
+
+    hideEditDelete() {
+      this.isEditDeleteVisible = false
+    },
+
+    expander(entity){
+      entity.expanded = !entity.expanded;
+    },
   },
 
   created() {
-    this.getTasks()
+    this.getTasks();
   },
 }
 </script>
@@ -135,15 +149,26 @@ export default {
 <template>
   <div class="container">
     <div class="card mt-3">
-      <div class="card-header card-header-green d-flex justify-content-between">
-        <div>
+      <div class="card-header card-header-green d-flex justify-content-between"
+           @mouseenter="showEditDelete"
+           @mouseleave="hideEditDelete">
+        <div class="d-flex align-items-center">
           <list-title :item="list" :isEdit="list.isEdit"
                       @edit-title="editList(list)"
                       @save-title="saveList(list)"
                       @cancel-edit="listEditSwitcher(list)" />
+
+          <edit-delete :item="list"
+                       :visible="isEditDeleteVisible"
+                       @edit-entity="editList(list)"
+                       @delete-entity="deleteList(list)"
+                       class="m-2" />
         </div>
         <div>
-          <edit-delete :item="list" @edit-entity="editList(list)" @delete-entity="deleteList(list)" />
+          <shrink-expand :item="list"
+                         :expanded="list.expanded"
+                         @expandSwitcher="expander(list)"
+          />
         </div>
       </div>
 

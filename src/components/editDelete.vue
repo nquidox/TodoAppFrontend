@@ -6,6 +6,11 @@ export default {
     item: {
       type: Object,
       required: true,
+    },
+    visible: {
+      type: Boolean,
+      required: true,
+      default: false,
     }
   },
 
@@ -17,13 +22,22 @@ export default {
     deleteEntity() {
       this.$emit("delete-entity", this.item.id);
     },
+
+    show(){
+      this.visible = true;
+    },
+    hide(){
+      this.visible = false;
+    },
   },
 }
 </script>
 
 <template>
-  <img src="../assets/icons/edit.svg" class="svg-icon m-1" @click="editEntity()" alt="edit" />
-  <img src="../assets/icons/trash.svg" class="svg-icon m-1" @click="deleteEntity()" alt="delete" />
+  <div v-if="visible">
+    <img src="../assets/icons/edit.svg" class="svg-icon mx-1" @click="editEntity()" alt="edit" />
+    <img src="../assets/icons/trash.svg" class="svg-icon mx-1" @click="deleteEntity()" alt="delete" />
+  </div>
 </template>
 
 <style scoped>
