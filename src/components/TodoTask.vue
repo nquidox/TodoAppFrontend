@@ -41,7 +41,7 @@ export default {
 
 <template>
   <div class="d-flex justify-content-between">
-    <div class="fs-6" v-if="!isEdit">
+    <div v-if="!isEdit">
       <done-switcher :item="item" @switch-state="doneSwitch()" />
       <span class="fs-6" @click="editTask()">{{ item.title }}</span>
     </div>

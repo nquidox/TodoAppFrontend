@@ -20,6 +20,7 @@ export default {
 <template>
   <img src="../assets/icons/circle.svg" v-if="item.status === 0" @click="switchState()" class="m-1 svg-icon" alt="*" />
   <img src="../assets/icons/check-circle.svg" v-if="item.status === 1" @click="switchState()" class="m-1 svg-icon" alt="*" />
+  <span class="m-1">|</span>
 </template>
 
 <style scoped>

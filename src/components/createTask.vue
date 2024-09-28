@@ -31,8 +31,9 @@ export default {
 
 <template>
   <div v-if="!isEdit">
-      <img src="../assets/icons/plus.svg" class="m-1 svg-icon" alt="add task" @click="editSwitcher()" />
-      <span class="fs-6">Add task</span>
+    <img src="../assets/icons/plus.svg" class="m-1 svg-icon" alt="add task" @click="editSwitcher()" />
+    <span class="m-1">|</span>
+    <span class="fs-6" @click="editSwitcher()">Add task</span>
   </div>
   <div v-else>
     <input class="border-black border-2" v-model="item.title" @keyup.enter="createTask()" placeholder="New task" />
